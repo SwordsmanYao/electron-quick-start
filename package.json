@@ -16,7 +16,6 @@
     "demo"
   ],
   "author": "GitHub",
-  "license": "CC0-1.0",
   "devDependencies": {
     "electron": "~1.7.8"
   },

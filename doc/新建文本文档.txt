@@ -1,0 +1,37 @@
+﻿1.全局安装electron
+  cnpm install -g electron
+2.克隆官网示例
+  git clone https://github.com/electron/electron-quick-start
+3.进入仓库
+  cd electron-quick-start
+4.安装依赖库并运行应用
+  cnpm install
+  npm start
+5.全局/局部安装electron-packager
+cnpm install electron-packager -g -S
+6.打开项目根路径下的项目package.json,给里面的"scripts":节点里加入"package": "electron-packager ./ --platform=win32 --arch=x64 --version=1.6.2 --icon=./images/aa.ico"
+  示例如下【./表示项目的根路径，./images/aa.ico表示根路径下有个images文件夹，里面有个ico图标，--version的值为"electron": 的值，即electron的版本号，
+可在cmd下输入electron -v查看或者在当前文件下查看"devDependencies": 里的"electron": 的值】
+{
+  "name": "electron-quick-start",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-packager ./ --platform=win32 --arch=x64 --version=1.6.2 --icon=./images/aa.ico"
+  },
+  "author": "a",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "electron": "~1.6.2",
+    "electron-packager": "^8.7.2"
+  }
+}
+注意：1.scripts下的package中的--version=1.6.2其中的1.6.2的值为devDependencies下的electron的值
+      2.scripts下的package中的./为项目根路径，因为在cmd下执行打包命令时，进入的是项目的根路径，所以只写成./，现在只会这种打包方式
+
+7.进入项目路径执行下面命令
+  npm run-script package【访问国外的服务，速度超慢】
+  ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ npm run-script package 【访问国内的服务，建议使用这个进行打包，速度超快的】
+  windows执行：set ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/&&npm run-script package
